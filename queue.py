@@ -11,14 +11,14 @@ class Queue:
     def add(self,value):
         t = self.Node(value)
 
-        if self.last != None:
-            self.last.next = t 
+        if self.last == None:
             self.last = t
-        
-        if self.first == None:
-            self.first = self.last
+            self.first = t
+        else:
+            self.last.next = t
+            self.last = t
 
-        self.last = t
+
 
     def remove(self):
         if self.last == None:
@@ -34,10 +34,10 @@ class Queue:
     
     def peek(self):
         if self.last == None:
-            raise EmptyQueueException(f"can't pop an empty queue")
+            raise EmptyQueueException(f"can't peek an empty queue")
         return self.first.value
     
-    def isEmpty(self):
+    def is_empty(self):
         return self.first == None
     
     def print_queue(self):
